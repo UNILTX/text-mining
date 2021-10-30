@@ -1,7 +1,7 @@
 
-import random
 import string
-
+import pip
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 def process_file(filename, skip_header):
     """Makes a histogram that contains the words from a file."""
