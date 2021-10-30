@@ -3,7 +3,7 @@ import string
 import codecs
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.tokenize import sent_tokenize
-import matplotlib 
+import matplotlib.pyplot as plt
 
 
 
@@ -79,9 +79,15 @@ def sentence_token_nltk(str):
 def sentiment_score(sen):
     sen=str(sen)
     score = SentimentIntensityAnalyzer().polarity_scores(sen)
-    return score
+    return score 
 
-
+def plotgraph():
+    #  make a bar graph based on sentiment score
+    name_list=['negative','neutural','positive','compound']
+    num_list = [0.068,0.83,0.103,1.0]
+    plt.bar(range(len(num_list)),num_list,tick_label=name_list)
+    plt.show()
+    return plt.show()
 
 def main():
 
@@ -107,6 +113,8 @@ def main():
 
     t=sentiment_score(sentence_token_nltk(str))
     print('sentiment score for the book:', t)
+
+    plotgraph() 
 
 
 if __name__ == '__main__':

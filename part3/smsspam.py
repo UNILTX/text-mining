@@ -1,3 +1,5 @@
+from thefuzz import fuzz
+
 
 def total_spam():
     f = open('part3/SMSSpamCollection.txt')
