@@ -57,30 +57,6 @@ def unique_words(hist):
     counts = hist.values() 
     return (num_unique, counts)
 
-def total_sentence():
-    hist = {}
-    f = open(filename, encoding='UTF8')
-
-    if skip_header:
-        skip_gutenberg_header(f)
-    
-    strippables = string.punctuation + string.whitespace
-
-    for line in f:
-        if line.startswith('*** END OF THIS PROJECT'):
-            break
-
-        line = line.replace('-', ' ')
-
-        for word in line.split():
-            word = word.strip(strippables)
-            word = word.lower()
-
-            # update the dictionary
-            hist[word] = hist.get(word, 0) + 1
-
-    return hist
-
 
 
 def main():
