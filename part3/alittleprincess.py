@@ -1,6 +1,7 @@
+
 import random
 import string
-from afinn import Afinn
+
 
 def process_file(filename, skip_header):
     """Makes a histogram that contains the words from a file."""
@@ -56,9 +57,34 @@ def unique_words(hist):
     counts = hist.values() 
     return (num_unique, counts)
 
+def total_sentence():
+    hist = {}
+    f = open(filename, encoding='UTF8')
+
+    if skip_header:
+        skip_gutenberg_header(f)
+    
+    strippables = string.punctuation + string.whitespace
+
+    for line in f:
+        if line.startswith('*** END OF THIS PROJECT'):
+            break
+
+        line = line.replace('-', ' ')
+
+        for word in line.split():
+            word = word.strip(strippables)
+            word = word.lower()
+
+            # update the dictionary
+            hist[word] = hist.get(word, 0) + 1
+
+    return hist
+
 
 
 def main():
+
     hist = process_file('part3/Alittleprincess.txt', skip_header=True)
     # print(hist)
     print('Total number of words:', total_words(hist))
@@ -67,6 +93,7 @@ def main():
     print('The most common words are:')
     for freq, word in t[0:100]:
         print(word, '\t', freq)
+
 
 
 

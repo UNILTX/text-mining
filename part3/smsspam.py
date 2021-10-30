@@ -14,6 +14,7 @@ def total_words():
     f = open('part3/SMSSpamCollection.txt')
     data = f.read()
     words = data.split()
+# print(words)
     return len(words)
 print(total_words())
 
@@ -21,16 +22,20 @@ def total_spam():
      """This functiom returns to the total spam in the txt"""
      f = open('part3/SMSSpamCollection.txt')
      data = f.read()
-     spam = data.count("spam")
+     words = data.split()
+     spam = words.count("spam")
      return spam
 print(total_spam())
+
 
 def total_ham():
      """This functiom returns to the total ham in the txt"""
      f = open('part3/SMSSpamCollection.txt')
      data = f.read()
-     ham = data.count("ham")
+     words = data.split()
+     ham = words.count("ham")
      return ham
 print(total_ham())
 
 
+def 
