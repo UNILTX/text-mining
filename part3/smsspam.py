@@ -1,5 +1,7 @@
 from thefuzz import fuzz
-
+import matplotlib.pyplot as plt
+import numpy as np 
+import pandas as pd 
 
 def total_spam():
     f = open('part3/SMSSpamCollection.txt')
@@ -38,5 +40,8 @@ def total_ham():
      ham = words.count("ham")
      return ham
 print(total_ham())
+
+def length_of_message():
+     data['length'] = data['text'].apply(len)
 
 
