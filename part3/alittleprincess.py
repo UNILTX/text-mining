@@ -1,13 +1,16 @@
 
 import string
-import pip
+import codecs
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from nltk.tokenize import sent_tokenize
+import matplotlib 
+
+
 
 def process_file(filename, skip_header):
     """Makes a histogram that contains the words from a file."""
     hist = {}
     f = open(filename, encoding='UTF8')
-
     if skip_header:
         skip_gutenberg_header(f)
     
@@ -52,10 +55,31 @@ def most_common(hist, excluding_stopwords=False):
     t.reverse()
     return t
 
+
+def least_common(hist, excluding_stopwords=False):
+    """Makes a list of word-freq pairs in acsending order of frequency."""
+    t=[]
+    for key, value in hist.items():
+        t.append((value, key))
+
+    t.sort()
+    return t
+
 def unique_words(hist):      
     num_unique = len(hist) 
     counts = hist.values() 
     return (num_unique, counts)
+
+
+def sentence_token_nltk(str):
+    # code refernce: https://zhuanlan.zhihu.com/p/41804488
+    sent_tokenize_list = sent_tokenize(str)
+    return sent_tokenize_list
+
+def sentiment_score(sen):
+    sen=str(sen)
+    score = SentimentIntensityAnalyzer().polarity_scores(sen)
+    return score
 
 
 
@@ -67,11 +91,26 @@ def main():
     
     t = most_common(hist, excluding_stopwords=True)
     print('The most common words are:')
-    for freq, word in t[0:100]:
+    for freq, word in t[0:30]:
         print(word, '\t', freq)
 
+    t = least_common(hist, excluding_stopwords=True)
+    print('The least common words are:')
+    for freq, word in t[0:30]:
+        print(word, '\t', freq)
 
+    with codecs.open('part3/Alittleprincess.txt', 'r', encoding='utf-8') as fp:
+        str = fp.read().strip()
+
+    sentence_str = sentence_token_nltk(str)
+    print(sentence_str)
+
+    t=sentiment_score(sentence_token_nltk(str))
+    print('sentiment score for the book:', t)
 
 
 if __name__ == '__main__':
     main()
+
+
+

@@ -38,4 +38,3 @@ def total_ham():
 print(total_ham())
 
 
-def 
