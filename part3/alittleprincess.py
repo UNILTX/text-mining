@@ -4,8 +4,6 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.tokenize import sent_tokenize
 import matplotlib.pyplot as plt
 
-
-
 def process_file(filename, skip_header):
     """Makes a histogram that contains the words from a file."""
     hist = {}
@@ -92,33 +90,28 @@ def main():
 
     hist = process_file('part3/Alittleprincess.txt', skip_header=True)
     # print(hist)
-    print('Total number of words:', total_words(hist))
+    print('Total number of words for the book The little princess :', total_words(hist))
     
     t = most_common(hist, excluding_stopwords=True)
-    print('The most common words are:')
+    print('The most common words for the book The little princess are:')
     for freq, word in t[0:30]:
         print(word, '\t', freq)
 
     t = least_common(hist, excluding_stopwords=True)
-    print('The least common words are:')
+    print('The least common words for the book The little princess are:')
     for freq, word in t[0:30]:
         print(word, '\t', freq)
 
     with codecs.open('part3/Alittleprincess.txt', 'r', encoding='utf-8') as fp:
         str = fp.read().strip()
-
     sentence_str = sentence_token_nltk(str)
-    print(sentence_str)
+    # print(sentence_str)
 
     t=sentiment_score(sentence_token_nltk(str))
-    print('sentiment score for the book:', t)
+    print('sentiment score for the book The little princess is:', t)
 
     plotgraph() 
 
 
-
-
 if __name__ == '__main__':
     main()
-
-
