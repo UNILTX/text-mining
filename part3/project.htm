@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project3- Tingxuan Li</title>
+</head>
+<body>
+<h1>Project Overview</h1>
+<p>In this project, I use two data source. One is the novel The Little Princess and the other is the SMSSpamCollection. <br>
+    For The Little Princess, I mainly want to see how many words are there in the novel, the most common words and the least common words to check the difficulty of the book.
+    And I want to test overall attitude of the book. As I have read the novel when I was little, I know this book aims to encourage all grils to be brave and nice. Therefore, my expectation is that the sentitment score is tend to be more positive. 
+    Also, I will use bar chart to visualize the result. <br>
+    For SMSSpamCollection, I want to count how many emails it uses, how many spam and how many ham are there in these emails. 
+    Then, I would like to check the text similarity of ham and spam to compare. 
+</p>
+Then, I will use the NLTK package to do the sentiment test to see the overall attitude of the book. As I have read the novel when I was little, I know this book aims to encourage all grils to be brave and nice. Therefore, my expectation is that the sentitment score is tend to be more positive. 
+
+<h1>Implementation</h1>
+<p>For The Little Princess, it is downloaded as a txt file. In order to count each word, we need to split the file in to single words and make a loop to count the words.
+   Then, the occurance of the word will be found out with the frequency. Then, it ables to sort the word and decide the ascending or descending order. 
+   After testing the word, I reference (https://zhuanlan.zhihu.com/p/41804488) to the code using the token method in the nltk package to divide the whole text into sentences. 
+   As a result, we would be able to get the sentiment score based on the text. And we could use different graphs to visualize our data. At the begining, I was thinking about to use the line chart. However, it might not be clear enough to see the comparsion between various index. Therefore, bar chart has been applied. 
+   <br>
+   When analyzing SMSSpamCollection, it is originally a text file. The email goes line by line with the classification of spam or ham. 
+   In order to check the number of emails, I split the data into lines, count the line to get the number of emails. 
+   Then, as we want to check the number of hams and spams. I originally use the file.count(). However, the deplication will occur, which all the words contains letter "ham" would be counted which is not what I want. 
+   So I put the data into the list and split by word, so that we can use the len() to check how many times one letter occured. 
+   For next part, which is to test text similarity, I originally want to test the similarity of sentences in spam or in ham. After consideration, I think it might be more valuable to check the similarity between ham and spam so that we can see if they are similar and hard to distinguish. 
+   And in order to test similarity, we need to get the data of all sentences in different list, and then we can split the sentence into classification (spam/ham) and content. Then, we can get the content all in one string. 
+   Finally, we could use thefuzz package to do the comparsion to get the text similarity. 
+</p>
+
+<h1>Results</h1>
+<p> Based on text analysis, the little princess in total has 67220 words. The most common words are "the,and,she,to,i" which is pretty normal. The name of the main character sara also appears in top 20 common words of the book.<br>
+    For the least common words, there are just many words only appear once in the novel and bot that difficult. Therefore, I would like to say this book is proper for teengaer reading. 
+    For the sentiment score, we can get that the negative score is 0.068, neutral socre is 0.83, positive score is 0.103, compound is 1.0.<br>
+    As the compound score is the sum of positive, negative & neutral scores which is then normalized between -1(most extreme negative) and +1 (most extreme positive). The more Compound score closer to +1, the higher the positivity of the text.
+    We can see that the compound socre of the little princess is 1.0 which proves that the book is definetly positive and encouraging, and this is in my expectation since i have the impression with the content of the book. 
+    <br><img src="bookana.jpg" alt="" width="500"><br>
+</p>
+<br><br>
+<p>For the SMSSpamCollection, there are 5,574 emails in total, contains 747 spams and 4827 hams. The total words in it are 92481.
+As we want to test the similarity, i use thefuzz package, and it shows that the similarity is only 1, which means the content in the spam and the content in the ham are so different.
+<img src="simi.jpg" alt="" width="500"><br>
+Therefore, tehre will be more potential to do more analysis on how to distinguish which content should be classfied as spam or ham. 
+
+
+
+
+
+<h1>Reflection</h1>
+<p>From the whole project, i think word count went really smooth. For new methods, I pay a lot of time figuring out the 
+software issues. As for downloading the ntlk package, since i didn't have pip, it costs me hours to figuring it out. Also, the time was spending on testing the code and learning new analysis metohd.
+I think my project is appropriately scoped as I combine the knowledged I have learnt with the new knowledge. I achieve the aim of my project. 
+Absolutely, there are far more things I could do with the dataset and the packages in the future. For example, I can do the sentiment test sentence by sentence and graph the trend of change in emotion. 
+Also, during the process of searching and learning, I have seen lots of cases, which people uses the spam and ham to do automation, which is pretty cool. Going further, it might be feasible to do it on my own. </p>
+
+
+
+
+
+
+    
+</body>
+</html>
