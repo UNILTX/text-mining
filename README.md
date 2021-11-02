@@ -2,4 +2,4 @@
 
 Please read the [instructions](instructions.md).
 
-My reflection paper location -part3 - reflection.htm
+https://uniltx.github.io/text-mining/part3/reflection.htm
